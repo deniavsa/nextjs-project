@@ -20,7 +20,7 @@ function Profile({ user }) {
       <ul style={{ border: "solid 1px black" }}>
         <li>{user.id}</li>
         <li>{user.name}</li>
-        <li>{user.usernamename}</li>
+        <li>{user.username}</li>
       </ul>
     </>
   );
@@ -42,7 +42,7 @@ export const getStaticPaths = async () => {
   const response = await axios.get(
     "https://jsonplaceholder.typicode.com/users"
   );
-  const users = await response.data;
+  const users = await response.data.slice(0, 5);
 
   const paths = users.map((user) => {
     return { params: { id: String(user.id) } };
